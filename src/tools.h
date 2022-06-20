@@ -72,6 +72,7 @@ void getPixel(int x, int y, unsigned char *image, unsigned char *pixel)
   pixel[2] = (p & 0b11111) << 3;
 }
 
+/*
 int pixelMap(int x, int y)
 {
   if(x < 0 || x >= 40 || y < 0 || y >= 30) 
@@ -81,4 +82,26 @@ int pixelMap(int x, int y)
   int row = (y % 15);
   int col = ((row & 1) == 0) ? 19 - (x % 20) : x % 20;
   return panel * 300 + row * 20 + col;
+}
+*/
+
+#define X_PIXELS 14
+#define Y_PIXELS 10
+
+int pixelMap(int x, int y)
+{
+
+  if(x < 0 || x >= X_PIXELS || y < 0 || y >= Y_PIXELS) {
+    //Serial.println();
+    return (X_PIXELS*Y_PIXELS)+1;
+  }
+
+  //Serial.print(x);Serial.print(" ");Serial.print(y);Serial.print("\t->");
+
+  if ( (y % 2) != 0) {
+    x = X_PIXELS - x -1;
+  }
+
+  //Serial.println(int((y*X_PIXELS) + x));
+  return (y*X_PIXELS) + x;
 }

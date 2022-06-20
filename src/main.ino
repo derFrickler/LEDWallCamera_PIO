@@ -36,6 +36,13 @@ void setup()
   initEffects();
   TaskHandle_t xHandle = NULL;
   xTaskCreatePinnedToCore(webTask, "web", 5000, 0,  ( 2 | portPRIVILEGE_BIT ), &xHandle, 0);
+
+  /*for(int y = 0; y < 3; y++)
+    for(int x = 0; x < 40; x++)
+    {
+      pixelMap(x, y);
+    }
+  */
 }
 
 void loop()
